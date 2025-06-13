@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variable</title>
+</head>
+<body>
+
+  <p>Cart Quantity </p>
+  <button onclick="console.log('Cart Quantity: '+cartquantity)">Show Quantity</button>
+  <button onclick=" cartquantity =cartquantity + 1, console.log('Cart Quantity: '+cartquantity)"  > Add to cart</button>
+  <button>+2</button>
+  <button>+3</button>
+  <button onclick="cartquantity =0, console.log('Cart Quantity: '+cartquantity)" >Reset</button>
+
+
+  <script>
+    let cartquantity =0;
+  </script>
+</body>
+</html>
