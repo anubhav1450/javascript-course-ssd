@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="playerMove('rock')">Rock</button>
+    <button onclick=" playerMove('paper')" >Paper </button>
+    <button onclick=" playerMove('scissor')">Scissors</button>
+    <p class="result"></p>
+    <p class="moves"></p>
+    <p class="scores"></p>
+    <button class="reset" onclick="resetScore()">Reset Score</button>
+</body>
+<script>
+    let move = ['rock','paper','scissor'];
+    let message= "";
+    let score ={
+        win:0,
+        lose:0,
+        tie :0
+    };
+    function playerMove(mc){
+    let computerMove = move[Math.floor(Math.random()*3)];   
+            if (mc=== computerMove){
+                message= "Tie!!";
+                score.tie++;
+            }
+            else if(mc== 'paper' && computerMove=='rock'|| mc =='rock'&& computerMove=='paper'|| mc == 'scissor' && computerMove=='paper'){
+                message= "Win";
+                score.win++;
+            }
+            else{
+                message ="Lose";
+                score.lose++;
+            };
+            document.querySelector('.result').innerHTML = message;
+            document.querySelector('.moves').innerHTML=`Your Move: ${mc} Computer Move: ${computerMove}`;
+            document.querySelector('.scores').innerHTML = `Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`;
+        };
+        function resetScore(){
+            score={
+                 win:0,
+                 lose:0,
+                 tie :0
+            };
+              document.querySelector('.scores').innerHTML = `Win: ${score.win} Lose: ${score.lose} Tie: ${score.tie}`;
+        };
+
+
+
+</script>
+</html>

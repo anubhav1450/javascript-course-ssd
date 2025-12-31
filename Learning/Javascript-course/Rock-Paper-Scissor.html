@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <p>Rock Paper Scissors</p>
+  
+  <button onclick="play('rock')">Rock</button>
+  <button onclick="play('paper')">Paper</button>
+  <button onclick="play('scissors')">Scissors</button>
+  <button onclick="resetScore()">Reset</button>
+
+  <p id="result"></p>
+  <p id="score">Wins: 0 | Losses: 0 | Ties: 0</p>
+
+  <script>
+
+    let Score = JSON.parse(localStorage.getItem('Score')) || {
+      win: 0,
+      lose: 0,
+      tie: 0
+    };
+
+    // ✅ Display initial scoreboard
+    updateScoreboard();
+
+    function play(playerMove) {
+      let moves = ['rock','paper','scissors'];
+      let computerMove = moves[Math.floor(Math.random() * 3)];
+
+      let message = '';
+
+      if (playerMove === computerMove) {
+        message = `Tie! Both chose ${playerMove}`;
+        Score.tie++;
+      } 
+      else if (
+        (playerMove === 'rock' && computerMove === 'scissors') ||
+        (playerMove === 'paper' && computerMove === 'rock') ||
+        (playerMove === 'scissors' && computerMove === 'paper')
+      ) {
+        message = `You Win! Computer chose ${computerMove}`;
+        Score.win++;
+      } 
+      else {
+        message = `You Lose! Computer chose ${computerMove}`;
+        Score.lose++;
+      }
+
+      // ✅ Save updated score into localStorage
+      localStorage.setItem('Score', JSON.stringify(Score));
+
+      // ✅ Update UI
+      document.getElementById('result').textContent = message;
+      updateScoreboard();
+    }
+
+    function resetScore() {
+      Score.win = 0;
+      Score.lose = 0;
+      Score.tie = 0;
+
+      // ✅ Update localStorage also
+      localStorage.setItem('Score', JSON.stringify(Score));
+
+      document.getElementById('result').textContent = "Game reset!";
+      updateScoreboard();
+    }
+
+    function updateScoreboard() {
+      document.getElementById('score').textContent = 
+        `Wins: ${Score.win} | Losses: ${Score.lose} | Ties: ${Score.tie}`;
+    }
+  </script>
+</body>
+</html>

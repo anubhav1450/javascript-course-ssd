@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Rock Paper Scissors</p>
+    <button onclick="playerMove('rock') ">Rock</button>
+    <button onclick="playerMove('paper') ">Paper</button>
+    <button onclick="playerMove('scissor') ">Scissor</button>
+    <p class="result"></p>
+    <p> Wins : 0  Lose: 0 Tie:0</p>
+    <script>
+        const moves = ['rock', 'paper','scissor'];
+        let message = '';
+        function playerMove(mv){
+        const computerMove = moves[Math.floor(Math.random()*3)];
+
+            if(mv === computerMove){
+                message = 'Tie!!!';
+            }           
+            else if(mv==='rock' && computerMove==='scissor' || mv==='paper' && computerMove==='rock' ||mv==='scissor' && computerMove==='paper'   ) {
+                message = 'Win!!!';
+            }
+            else{
+                message ='Lose';
+            }; 
+        document.querySelector('.result').innerHTML = message;
+ 
+        };
+
+    </script>
+</body>
+</html>
+

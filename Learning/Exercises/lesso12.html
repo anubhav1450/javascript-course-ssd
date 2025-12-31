@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App</title>
+</head>
+<body>
+    <button  class="btn">Start</button>
+    
+    <button onclick="Cart()" class="cart">Add to Cart</button>
+    <button onclick="Add()">Add</button>
+    <button onclick="Remove()"> Remove</button>
+    <p class="message"></p>
+    <script>
+        buttonElement =document.querySelector(".btn");
+
+        buttonElement.addEventListener("click", Run);
+        function Run(){
+        if(buttonElement.innerHTML==="Start"){
+            buttonElement.innerHTML="Loading...";
+            setTimeout(()=>{
+        buttonElement.innerHTML= "Finished!";
+            },1000);
+        }
+        else{
+             setTimeout(()=>{
+        buttonElement.innerHTML= "Start";
+
+            },1000);
+        };
+    }
+
+    function Cart(){
+        setTimeout(()=>{
+        document.querySelector(".message").innerHTML="";
+
+        },2000);
+        document.querySelector(".message").innerHTML="Added";
+
+
+    }
+    let toggle = false;
+    let add= 0;
+    
+    function Add(){
+            add+=1;
+    }
+    function Remove(){
+        if(add>0) add--;
+    }
+setInterval(() => {
+   if (add < 1) {
+        document.title = "App";
+        toggle = false;   // reset state
+        return;
+    }
+
+    document.title = toggle
+        ? `${add} New Message!`
+        : "App";
+
+    toggle = !toggle;
+}, 1000);
+        </script>
+</body>
+</html>
+
